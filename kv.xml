@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<language name="Kivy" version="1" section="Markup" extensions="*.kv" kateversion="2.4" indenter="python">
+
+  <highlighting>
+
+    <list name="special-variables">
+      <item>self</item>
+      <item>root</item>
+      <item>app</item>
+      <item>args</item>
+      <item>id</item>
+    </list>
+
+    <contexts>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="normal_text">
+        <RegExpr attribute="Directive" context="directive" String="^#:\s*(import|set|kivy)" />
+        <DetectChar attribute="Comment" context="comment" char="#" />
+        <DetectChar attribute="Class Rule" context="class_rule" char="&lt;"
+                    firstNonSpace="true" />
+        <RegExpr attribute="Template Base" String="^\w+:$" />
+        <RegExpr attribute="Template" String="\s+\w+:$" />
+        <RegExpr attribute="Attribute" String="\s+\w+:" context="python" />
+      </context>
+
+      <context attribute="Directive" lineEndContext="#pop" name="directive">
+      </context>
+
+      <context attribute="Class Rule" lineEndContext="#pop" name="class_rule">
+          <DetectChar attribute="Special Char" char="@" />
+          <DetectChar attribute="Special Char" char="," />
+          <DetectChar attribute="Special Char" char="+" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#pop" name="python">
+        <keyword attribute="Keyword" String="special-variables" />
+        <IncludeRules context="Normal##Python" />
+      </context>
+
+      <context attribute="Comment" lineEndContext="#pop" name="comment">
+      </context>
+
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="Class Rule" defStyleNum="dsBuiltIn"/>
+      <itemData name="Template Base" defStyleNum="dsVariable"/>
+      <itemData name="Template" defStyleNum="dsControlFlow"/>
+      <itemData name="Attribute" defStyleNum="dsAttribute"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+      <itemData name="Directive" defStyleNum="dsPreprocessor"/>
+      <itemData name="Special Char" defStyleNum="dsSpecialChar" />
+    </itemDatas>
+
+  </highlighting>
+
+  <general>
+    <comments>
+      <comment name="singleLine" start="#"/>
+    </comments>
+    <keywords casesensitive="1"/>
+    <folding indentationsensitive="1"/>
+  </general>
+
+</language>

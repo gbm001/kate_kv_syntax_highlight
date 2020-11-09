@@ -19,9 +19,9 @@
         <DetectChar attribute="Comment" context="comment" char="#" />
         <DetectChar attribute="Class Rule" context="class_rule" char="&lt;"
                     firstNonSpace="true" />
-        <RegExpr attribute="Template Base" String="^\w+:$" />
-        <RegExpr attribute="Template" String="\s+\w+:$" />
-        <RegExpr attribute="Attribute" String="\s+\w+:" context="python" />
+        <RegExpr attribute="Template Base" String="^\w+:\s*(?=(#|$))" />
+        <RegExpr attribute="Template" String="^\s+\w+:\s*(?=(#|$))" />
+        <RegExpr attribute="Attribute" String="^\s+\w+:" context="python" />
       </context>
 
       <context attribute="Directive" lineEndContext="#pop" name="directive">
